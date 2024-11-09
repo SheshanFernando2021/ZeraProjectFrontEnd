@@ -1,5 +1,5 @@
 .HomeContainer {
-  height: 100vh;
+  height: 88vh;
   width: 100%;
   justify-content: space-between;
   /* display: grid;
@@ -14,7 +14,7 @@
 .left img,
 .right img {
   display: flex;
-  height: 100vh !important;
+  height: 88vh !important;
   width: auto;
 }
 @media screen and (max-width: 1178px) {
@@ -53,7 +53,7 @@
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Lato", sans-serif;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .headline {
     font-size: 1.2rem;
     text-shadow: 3px 1px 1px rgb(0, 0, 0);
@@ -61,7 +61,7 @@
     text-align: center;
     z-index: 3;
     position: absolute;
-    margin-top: 5rem;
+    margin-top: 2rem;
     text-align: center;
     width: 100%;
     background-color: rgba(240, 255, 255, 0.125);
