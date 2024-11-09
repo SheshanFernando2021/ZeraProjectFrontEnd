@@ -1,0 +1,96 @@
+.NavbarContainer {
+  height: 12vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #cbcbcc79;
+  position: fixed;
+  box-shadow: 10px 1px 40px black;
+  z-index: 9;
+}
+.Logo {
+  font-size: 3.5rem;
+  padding-left: 50px;
+  text-shadow: 8px 2px 2px rgb(255, 255, 255);
+}
+.MenuVertical {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .Logo {
+    font-size: 2.5rem;
+  }
+  .NavbarContainer {
+    height: 10vh;
+  }
+}
+
+.MenuFlat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  gap: 20px;
+}
+.MenuFlat li {
+  text-decoration: none;
+  list-style-type: none;
+  color: #333;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 1px 0.5px 0px rgb(44, 44, 44);
+}
+.MenuIcon {
+  display: none;
+}
+@media screen and (max-width: 1000px) {
+  .MenuFlat {
+    display: none;
+  }
+  .MenuFlat li {
+    display: none;
+  }
+  .MenuIcon {
+    display: block;
+    height: 30px;
+    width: auto;
+    padding-right: 2rem;
+    cursor: pointer;
+  }
+  .MenuVertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    position: absolute;
+    top: 90%;
+    left: 0;
+    background-color: #ffffffb1;
+    width: 100%;
+    padding: 2rem;
+    z-index: 100;
+    transition: transform 0.3s;
+  }
+  .MenuVertical li {
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    padding-right: 10rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 500;
+    align-items: center;
+  }
+  .MenuVertical li img {
+    height: 30px;
+  }
+}
