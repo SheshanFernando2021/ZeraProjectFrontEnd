@@ -1,0 +1,75 @@
+.NewArrivalsContainer {
+  height: 88vh;
+  width: 100%;
+  overflow-x: hidden; /* This is fine for the overall container */
+  padding-top: 12vh;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.NewArrivalsItemContainer {
+  display: flex;
+  margin: 0 20px;
+  overflow-x: auto; /* This allows horizontal scrolling */
+  white-space: nowrap; /* Prevent line breaks so items stay in a single row */
+  height: 80vh;
+  overflow-y: hidden;
+}
+
+.NewArrivalsItemContainer .item1,
+.NewArrivalsItemContainer .item2,
+.NewArrivalsItemContainer .item3,
+.NewArrivalsItemContainer .item4,
+.NewArrivalsItemContainer .item5,
+.NewArrivalsItemContainer .item6,
+.NewArrivalsItemContainer .item7,
+.NewArrivalsItemContainer .item8,
+.NewArrivalsItemContainer .item9,
+.NewArrivalsItemContainer .item10 {
+  display: inline-flex; /* Use inline-flex for proper row alignment */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 110%;
+  width: 300px; /* Fixed width for each item */
+  padding: 0.5rem;
+  transition: background-color 0.3s;
+  margin-right: 10px; /* Add some space between items */
+  flex-shrink: 0; /* Prevent shrinking */
+  flex-grow: 0; /* Prevent growing */
+  overflow: hidden; /* Hide any part of the image that overflows */
+  cursor: pointer;
+  border-radius: 0 25% 0 35%;
+}
+
+.NewArrivalsItemContainer .item1 img,
+.NewArrivalsItemContainer .item2 img,
+.NewArrivalsItemContainer .item3 img,
+.NewArrivalsItemContainer .item4 img,
+.NewArrivalsItemContainer .item5 img,
+.NewArrivalsItemContainer .item6 img,
+.NewArrivalsItemContainer .item7 img,
+.NewArrivalsItemContainer .item8 img,
+.NewArrivalsItemContainer .item9 img,
+.NewArrivalsItemContainer .item10 img {
+  width: 100%; /* Make the image take up the full width of the item */
+  height: 100%; /* Make the image take up the full height of the item */
+  object-fit: cover; /* Ensures the image covers the item div and maintains aspect ratio */
+}
+.label {
+  background-color: rgba(255, 255, 255, 0.755);
+  padding: 5px 10px;
+  z-index: 3;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 20%;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  flex-wrap: wrap;
+}
+.label h4 {
+  display: flex;
+  flex-wrap: wrap;
+}
