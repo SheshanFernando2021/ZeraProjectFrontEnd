@@ -45,7 +45,12 @@ const Navbar = () => {
             Contact <img src={Contact} alt="" />
           </li>
           <li>
-            Cart
+            <Link
+              to="/cart"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Cart
+            </Link>
             <img src={Cart} alt="" />
           </li>
           <li>
@@ -69,7 +74,11 @@ const Navbar = () => {
         <li>About</li>
         <li>Contact</li>
         <li>Login</li>
-        <li>Cart</li>
+        <li>
+          <Link to="/cart" style={{ color: "inherit", textDecoration: "none" }}>
+            Cart
+          </Link>
+        </li>
         <li>Account</li>
       </ul>
     </div>

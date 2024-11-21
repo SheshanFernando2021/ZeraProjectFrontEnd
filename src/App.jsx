@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import NewArrivals from "./Components/NewArrivals/NewArrivals";
 import ProductList from "./Components/Product/ProductListfolder/ProductList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Cart from "./Components/Cart/Cart components/Cart";
 const ShopLayout = () => (
   <>
     <Navbar />
@@ -14,6 +15,7 @@ const HomeLayout = () => (
   <>
     <Navbar />
     <Home />
+    <NewArrivals />
   </>
 );
 const App = () => {
@@ -22,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeLayout />} />
         <Route path="/shop" element={<ShopLayout />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
   );
