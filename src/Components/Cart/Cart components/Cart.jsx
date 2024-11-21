@@ -72,7 +72,7 @@ const Cart = ({ userId }) => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
+    <div className="cartContainer">
       <h1>Your Cart</h1>
       {cart && cart.cartItems.length === 0 ? (
         <p>Your cart is empty.</p>

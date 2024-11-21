@@ -45,11 +45,11 @@
   text-align: center;
   z-index: 3;
   position: absolute;
-  margin-top: 15rem;
+  margin-top: 6rem;
   text-align: center;
   width: 100%;
   background-color: rgba(240, 255, 255, 0.125);
-  padding: 10rem 0;
+  padding: 6rem 0;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Lato", sans-serif;
 }

@@ -18,13 +18,19 @@ const HomeLayout = () => (
     <NewArrivals />
   </>
 );
+const CartLayout =()=>(
+  <>
+    <Navbar />
+    <Cart />
+  </>
+);
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeLayout />} />
         <Route path="/shop" element={<ShopLayout />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<CartLayout />} />
       </Routes>
     </Router>
   );
