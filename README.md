@@ -22,7 +22,7 @@ Zera is an eCommerce website for a clothing store, built with **.NET** for the b
 
 ### Desktop View
 
-![Desktop View](https://github.com/user-attachments/assets/a67b5c8d-a7a6-4638-9b1d-670cefad2f69 =600x400)
+![Desktop View]![image](https://github.com/user-attachments/assets/a67b5c8d-a7a6-4638-9b1d-670cefad2f69 = 600*400)
 
 ### Mobile View (Landscape)
 
