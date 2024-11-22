@@ -4,7 +4,7 @@ Zera is an eCommerce website for a clothing store, built with **.NET** for the b
 
 ## Features
 
-- **User Authentication**: Secure login and registration using JWT tokens.
+- **User Authentication**: Secure login and registration.
 - **Product Catalog**: Browse a wide range of clothing items with product details.
 - **Shopping Cart**: Add items to the shopping cart and modify quantities.
 - **Checkout**: Complete the purchase through a seamless checkout process.
@@ -15,8 +15,7 @@ Zera is an eCommerce website for a clothing store, built with **.NET** for the b
 - **Backend**: .NET Core API
 - **Frontend**: React.js
 - **Cloud**: Azure (App Services, Azure SQL Database)
-- **Authentication**: JWT (JSON Web Tokens)
-- **Deployment**: GitHub Actions, Azure CI/CD
+- **Deployment**: GitHub Actions
 
 ## Screenshots
 
