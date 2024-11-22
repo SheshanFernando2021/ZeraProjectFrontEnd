@@ -54,14 +54,24 @@ const Navbar = () => {
             <img src={Cart} alt="" />
           </li>
           <li>
-            Account <img src={Account} alt="" />
+            <Link
+              to="/register"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Account <img src={Account} alt="" />
+            </Link>
           </li>
           <li>
             Log Out
             <img src={Logout} alt="" />
           </li>
           <li>
-            Login <img src={Login} alt="" />
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Login <img src={Login} alt="" />
+            </Link>
           </li>
         </ul>
       )}
@@ -73,13 +83,31 @@ const Navbar = () => {
         </li>
         <li>About</li>
         <li>Contact</li>
-        <li>Login</li>
+        <li>
+          {" "}
+          <Link
+            to="/login"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            {" "}
+            Login
+          </Link>
+        </li>
         <li>
           <Link to="/cart" style={{ color: "inherit", textDecoration: "none" }}>
             Cart
           </Link>
         </li>
-        <li>Account</li>
+
+        <li>
+          {" "}
+          <Link
+            to="/register"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            Register
+          </Link>
+        </li>
       </ul>
     </div>
   );

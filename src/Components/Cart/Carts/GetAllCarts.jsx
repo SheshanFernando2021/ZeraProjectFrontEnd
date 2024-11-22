@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-const API_URL = "http://localhost:5167/api/cart";
-const API_URL2 = "http://localhost:5167/api/cartitem";
+const API_URL = "https://zera.azurewebsites.net/api/cart";
+const API_URL2 = "https://zera.azurewebsites.net/api/cartitem";
 export const GetAllCarts = () => {
   return <div>GetAllCarts</div>;
 };
@@ -9,9 +9,7 @@ export const GetAllCarts = () => {
 //NOTE: getting the user by the id.
 export const GetCartByUserId = async (Id) => {
   try {
-    const response = await axios.get($`{API_URL}/userId?id={userId}`, {
-      withCredentials: true,
-    });
+    const response = await axios.get($`{API_URL}/userId?id={userId}`);
     return response.data;
     console.log(response.data);
   } catch (error) {
