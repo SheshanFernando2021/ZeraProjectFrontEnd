@@ -1,5 +1,3 @@
-// Login.js
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
@@ -29,13 +27,24 @@ const Login = () => {
     try {
       // Send POST request to the backend API for login
       const response = await axios.post(
-        "https://zera.azurewebsites.net/api/account/loginUser",
+        "https://zera.azurewebsites.net/api/auth/login", // Make sure this matches the backend route
         loginData
       );
 
       if (response.status === 200) {
+        // Assuming the response contains the token
+        const { token } = response.data;
+
+        // Store the JWT token in localStorage
+        localStorage.setItem("token", token);
+
         alert("Login successful!");
-        navigate("/shop"); // Redirect to the dashboard page after successful login
+
+        // Optionally set Authorization header for subsequent requests
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        // Redirect to the shop page after successful login
+        navigate("/shop");
       }
     } catch (err) {
       // Display error message on failure

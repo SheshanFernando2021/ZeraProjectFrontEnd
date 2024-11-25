@@ -1,46 +1,78 @@
 .product-container {
   padding-top: 12vh;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   background-color: #bbbbbb;
-  transition: background-color 0.3s;
-  flex-direction: column;
   min-height: 88vh;
 }
+
 .product-list {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   padding: 20px;
-  flex-grow: 1;
-  transition: flex-grow 0.3s;
-  margin-bottom: 20px;
   max-width: 1200px;
-  overflow-x: hidden;
 }
+
 .product-item {
   width: 250px;
   height: 450px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* Needed for positioning buttons */
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
+
+.product-item:hover {
+  transform: scale(1.05);
+}
+
 .product-img {
-  display: flex;
-  flex: 1;
-  width: 200px;
-  height: 400px;
+  width: 100%;
+  height: 200px;
   object-fit: cover;
+  border-radius: 8px;
 }
+
+.product-buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.product-buttons button {
+  padding: 10px;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.product-buttons button:hover {
+  background-color: #2980b9;
+}
+
 .product-description {
-  height: 10%;
+  height: 60px; /* Adjust based on your content */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .product-price {
-  margin-top: 0;
+  font-weight: bold;
 }
