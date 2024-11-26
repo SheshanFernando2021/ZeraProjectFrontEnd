@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cart from "./Components/Cart/Cart components/Cart";
 import Register from "./Components/User/Register/Register";
 import Login from "./Components/User/Login/Login";
+import CartNav from "./Components/Cart/Carts/CartNav";
 const ShopLayout = () => (
   <>
     <Navbar />
@@ -36,6 +37,7 @@ const CartLayout = () => (
   <>
     <Navbar />
     <Cart />
+    <CartNav />
   </>
 );
 const App = () => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import getAllProducts from "../Products/getAllProducts";
+import axios from "axios";
 import "./ProductList.css";
 
 const ProductList = () => {
@@ -13,10 +14,21 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const productsData = await getAllProducts();
-        setProducts(productsData);
-        setLoading(false);
+        console.log("Fetched products:", productsData);
+
+        if (
+          productsData &&
+          productsData.$values &&
+          Array.isArray(productsData.$values)
+        ) {
+          setProducts(productsData.$values);
+        } else {
+          throw new Error("Fetched data is not an array");
+        }
       } catch (err) {
-        setError("Failed to fetch products");
+        console.error(err);
+        setError(err.message || "Failed to fetch products");
+      } finally {
         setLoading(false);
       }
     };
@@ -24,18 +36,58 @@ const ProductList = () => {
     fetchProducts();
 
     const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    setIsLoggedIn(!!token);
   }, []);
+
   const handleMouseEnter = (productId) => {
     setHoveredProductId(productId);
   };
 
   const handleMouseLeave = () => {
     setHoveredProductId(null);
+  };
+
+  const handleAddToCart = async (productId) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("You need to log in to add products to your cart.");
+      return;
+    }
+
+    try {
+      console.log("User Token: ", token);
+
+      const response = await axios.post(
+        "http://localhost:5167/api/CartItem/add",
+        { productId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Product added to cart successfully!");
+      } else {
+        alert("Failed to add product to cart.");
+      }
+    } catch (error) {
+      console.error(
+        "Error adding product to cart:",
+        error.response?.data || error
+      );
+
+      if (error.response?.status === 401) {
+        alert(
+          "Unauthorized. Please log in. Token might be invalid or expired."
+        );
+      } else {
+        alert("An error occurred while adding the product to the cart.");
+      }
+    }
   };
 
   if (loading) {
@@ -65,7 +117,6 @@ const ProductList = () => {
             <p className="product-description">{product.description}</p>
             <p className="product-price">Price: ${product.price}</p>
 
-            {/* Only show buttons for the hovered product */}
             {hoveredProductId === product.productId && (
               <div className="product-buttons">
                 {!isLoggedIn ? (
@@ -76,7 +127,12 @@ const ProductList = () => {
                     <button className="register-btn">Register</button>
                   </>
                 ) : (
-                  <button className="add-to-cart-btn">Add to Cart</button>
+                  <button
+                    className="add-to-cart-btn"
+                    onClick={() => handleAddToCart(product.productId)}
+                  >
+                    Add to Cart
+                  </button>
                 )}
               </div>
             )}

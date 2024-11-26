@@ -36,7 +36,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://zera.azurewebsites.net/api/auth/register", // Update URL to match your backend API
+        "http://localhost:5167/api/Auth/Register", // Update URL to match your backend API
         userData
       );
 
