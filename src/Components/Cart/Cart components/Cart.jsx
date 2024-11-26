@@ -8,7 +8,7 @@
 
 //   useEffect(() => {
 //     const fetchCart = async () => {
-//       const token = localStorage.getItem("token"); // Retrieve the token from localStorage
+//       const token = localStorage.getItem("token"); // Retrieve token
 //       if (!token) {
 //         setError("No token found. Please log in.");
 //         setLoading(false);
@@ -20,7 +20,7 @@
 //           "http://localhost:5167/api/cart/usercart",
 //           {
 //             headers: {
-//               Authorization: `Bearer ${token}`, // Use the token in the Authorization header
+//               Authorization: `Bearer ${token}`,
 //             },
 //           }
 //         );
@@ -44,11 +44,61 @@
 //     fetchCart();
 //   }, []);
 
-//   if (loading) return <div className="loading">Loading...</div>;
-//   if (error) return <div className="error">{error}</div>;
+//   const updateCartItem = async (id, quantity) => {
+//     const token = localStorage.getItem("token");
+//     try {
+//       const response = await fetch(`http://localhost:5167/api/cartitem/${id}`, {
+//         method: "PUT",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({ cartItemId: id, quantity }),
+//       });
+
+//       if (!response.ok) {
+//         throw new Error(`Failed to update cart item: ${response.status}`);
+//       }
+
+//       // Update cart state locally after successful response
+//       setCartItems((prevItems) =>
+//         prevItems.map((item) =>
+//           item.cartItemId === id ? { ...item, quantity } : item
+//         )
+//       );
+//     } catch (err) {
+//       console.error(err.message);
+//     }
+//   };
+
+//   const deleteCartItem = async (id) => {
+//     const token = localStorage.getItem("token");
+//     try {
+//       const response = await fetch(`http://localhost:5167/api/cartitem/${id}`, {
+//         method: "DELETE",
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+
+//       if (!response.ok) {
+//         throw new Error(`Failed to delete cart item: ${response.status}`);
+//       }
+
+//       // Remove item from local state after successful response
+//       setCartItems((prevItems) =>
+//         prevItems.filter((item) => item.cartItemId !== id)
+//       );
+//     } catch (err) {
+//       console.error(err.message);
+//     }
+//   };
 
 //   const calculateTotal = () =>
 //     cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+//   if (loading) return <div className="loading">Loading...</div>;
+//   if (error) return <div className="error">{error}</div>;
 
 //   return (
 //     <div className="cart-container">
@@ -69,8 +119,33 @@
 //                   <h3>{item.product.productName}</h3>
 //                   <p>{item.product.description}</p>
 //                   <p>Price: ${item.price.toFixed(2)}</p>
-//                   <p>Quantity: {item.quantity}</p>
+//                   <div className="cart-item-quantity">
+//                     <button
+//                       onClick={() =>
+//                         item.quantity > 1 &&
+//                         updateCartItem(item.cartItemId, item.quantity - 1)
+//                       }
+//                       className="quantity-btn"
+//                     >
+//                       -
+//                     </button>
+//                     <span>{item.quantity}</span>
+//                     <button
+//                       onClick={() =>
+//                         updateCartItem(item.cartItemId, item.quantity + 1)
+//                       }
+//                       className="quantity-btn"
+//                     >
+//                       +
+//                     </button>
+//                   </div>
 //                 </div>
+//                 <button
+//                   onClick={() => deleteCartItem(item.cartItemId)}
+//                   className="delete-btn"
+//                 >
+//                   Delete
+//                 </button>
 //               </div>
 //             ))}
 //           </div>
@@ -133,6 +208,14 @@ const Cart = () => {
 
   const updateCartItem = async (id, quantity) => {
     const token = localStorage.getItem("token");
+
+    // Find the cart item to retrieve productId
+    const cartItem = cartItems.find((item) => item.cartItemId === id);
+    if (!cartItem) {
+      console.error("Cart item not found.");
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:5167/api/cartitem/${id}`, {
         method: "PUT",
@@ -140,7 +223,13 @@ const Cart = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ cartItemId: id, quantity }),
+        body: JSON.stringify({
+          cartItemId: id,
+          quantity,
+          price: cartItem.price,
+          cartId: cartItem.cartId,
+          productId: cartItem.product.productId, // Include productId
+        }),
       });
 
       if (!response.ok) {
