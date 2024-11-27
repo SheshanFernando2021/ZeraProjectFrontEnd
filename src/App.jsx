@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cart from "./Components/Cart/Cart components/Cart";
 import Register from "./Components/User/Register/Register";
 import Login from "./Components/User/Login/Login";
+import Order from "./Components/Order/Oder";
 const ShopLayout = () => (
   <>
     <Navbar />
@@ -38,6 +39,12 @@ const CartLayout = () => (
     <Cart />
   </>
 );
+const OrderLayout = () => (
+  <>
+    <Navbar />
+    <Order />
+  </>
+);
 const App = () => {
   return (
     <Router>
@@ -47,6 +54,7 @@ const App = () => {
         <Route path="/cart" element={<CartLayout />} />
         <Route path="/register" element={<RegisterLayout />} />
         <Route path="/login" element={<LoginLayout />} />
+        <Route path="/order" element={<OrderLayout />} />
       </Routes>
     </Router>
   );

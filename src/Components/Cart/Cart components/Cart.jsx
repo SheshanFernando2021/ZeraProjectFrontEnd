@@ -46,6 +46,14 @@
 
 //   const updateCartItem = async (id, quantity) => {
 //     const token = localStorage.getItem("token");
+
+//     // Find the cart item to retrieve productId
+//     const cartItem = cartItems.find((item) => item.cartItemId === id);
+//     if (!cartItem) {
+//       console.error("Cart item not found.");
+//       return;
+//     }
+
 //     try {
 //       const response = await fetch(`http://localhost:5167/api/cartitem/${id}`, {
 //         method: "PUT",
@@ -53,7 +61,13 @@
 //           "Content-Type": "application/json",
 //           Authorization: `Bearer ${token}`,
 //         },
-//         body: JSON.stringify({ cartItemId: id, quantity }),
+//         body: JSON.stringify({
+//           cartItemId: id,
+//           quantity,
+//           price: cartItem.price,
+//           cartId: cartItem.cartId,
+//           productId: cartItem.product.productId, // Include productId
+//         }),
 //       });
 
 //       if (!response.ok) {
@@ -159,14 +173,15 @@
 // };
 
 // export default Cart;
-
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Cart.css";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -328,6 +343,12 @@ const Cart = () => {
           <div className="cart-total">
             <h3>Total: ${calculateTotal().toFixed(2)}</h3>
           </div>
+          <button
+            className="place-order-btn"
+            onClick={() => navigate("/order")} // Navigate to Order page
+          >
+            Place Order
+          </button>
         </>
       )}
     </div>
