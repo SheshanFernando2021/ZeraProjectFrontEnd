@@ -235,7 +235,14 @@ const Order = () => {
       )}
 
       {successMessage && (
-        <div className="success-message">{successMessage}</div>
+        <div className="success-message">
+          <h2>Thank You!</h2>
+          <p>{successMessage}</p>
+          <p>
+            Your order is on its way. You'll receive a confirmation email
+            shortly.
+          </p>
+        </div>
       )}
     </div>
   );

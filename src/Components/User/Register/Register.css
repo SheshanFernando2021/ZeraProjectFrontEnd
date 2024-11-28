@@ -4,6 +4,9 @@
   height: 88vh;
   width: 100%;
   padding-top: 12vh;
+  background: url(../../../assets/Loginbg.jpg);
+  background-size: cover;
+  background-position: center;
 }
 .register {
   max-width: 400px;
@@ -17,6 +20,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h2 {
