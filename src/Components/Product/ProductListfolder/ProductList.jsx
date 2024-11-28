@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import getAllProducts from "../Products/getAllProducts";
 import axios from "axios";
 import "./ProductList.css";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -14,8 +15,6 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const productsData = await getAllProducts();
-        console.log("Fetched products:", productsData);
-
         if (
           productsData &&
           productsData.$values &&
@@ -26,7 +25,6 @@ const ProductList = () => {
           throw new Error("Fetched data is not an array");
         }
       } catch (err) {
-        console.error(err);
         setError(err.message || "Failed to fetch products");
       } finally {
         setLoading(false);
@@ -56,8 +54,6 @@ const ProductList = () => {
     }
 
     try {
-      console.log("User Token: ", token);
-
       const response = await axios.post(
         "https://zera.azurewebsites.net/api/CartItem/add",
         { productId },
@@ -75,11 +71,6 @@ const ProductList = () => {
         alert("Failed to add product to cart.");
       }
     } catch (error) {
-      console.error(
-        "Error adding product to cart:",
-        error.response?.data || error
-      );
-
       if (error.response?.status === 401) {
         alert(
           "Unauthorized. Please log in. Token might be invalid or expired."
@@ -104,7 +95,9 @@ const ProductList = () => {
         {products.map((product) => (
           <div
             key={product.productId}
-            className="product-item"
+            className={`product-item ${
+              hoveredProductId === product.productId ? "hovered" : ""
+            }`}
             onMouseEnter={() => handleMouseEnter(product.productId)}
             onMouseLeave={handleMouseLeave}
           >
@@ -117,25 +110,25 @@ const ProductList = () => {
             <p className="product-description">{product.description}</p>
             <p className="product-price">Price: ${product.price}</p>
 
-            {hoveredProductId === product.productId && (
-              <div className="product-buttons">
-                {!isLoggedIn ? (
-                  <>
-                    <button className="login-btn">
-                      Login to purchase this item
-                    </button>
+            <div className="product-buttons">
+              {!isLoggedIn ? (
+                <>
+                  <Link to="/login">
+                    <button className="login-btn">Login</button>
+                  </Link>
+                  <Link to="/register">
                     <button className="register-btn">Register</button>
-                  </>
-                ) : (
-                  <button
-                    className="add-to-cart-btn"
-                    onClick={() => handleAddToCart(product.productId)}
-                  >
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            )}
+                  </Link>
+                </>
+              ) : (
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => handleAddToCart(product.productId)}
+                >
+                  Add to Cart
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>

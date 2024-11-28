@@ -24,12 +24,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  position: relative; /* Needed for positioning buttons */
+  position: relative;
   padding: 10px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .product-item:hover {
@@ -43,8 +43,14 @@
   border-radius: 8px;
 }
 
+.product-description,
+.product-price {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
 .product-buttons {
-  display: flex;
+  display: none;
   gap: 10px;
   flex-direction: column;
   align-items: center;
@@ -69,12 +75,11 @@
   background-color: #2980b9;
 }
 
-.product-description {
-  height: 60px; /* Adjust based on your content */
-  overflow: hidden;
-  text-overflow: ellipsis;
+.product-item.hovered .product-description,
+.product-item.hovered .product-price {
+  opacity: 0;
 }
 
-.product-price {
-  font-weight: bold;
+.product-item.hovered .product-buttons {
+  display: flex;
 }
