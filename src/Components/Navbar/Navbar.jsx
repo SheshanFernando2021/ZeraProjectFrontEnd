@@ -73,11 +73,14 @@ const Navbar = () => {
               Shop <img src={shop} alt="shop" />
             </Link>
           </li>
+
           <li>
-            About <img src={us} alt="about" />
-          </li>
-          <li>
-            Contact <img src={Contact} alt="contact" />
+            <Link
+              to="/contact"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              Contact <img src={Contact} alt="contact" />
+            </Link>
           </li>
           <li>
             <Link
@@ -87,14 +90,7 @@ const Navbar = () => {
               Cart <img src={Cart} alt="cart" />
             </Link>
           </li>
-          <li>
-            <Link
-              to="/account"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Account <img src={Account} alt="account" />
-            </Link>
-          </li>
+
           {isLoggedIn ? (
             <li onClick={handleLogout}>
               Log Out <img src={Logout} alt="logout" />
@@ -127,8 +123,16 @@ const Navbar = () => {
             Shop
           </Link>
         </li>
-        <li>About</li>
-        <li>Contact</li>
+
+        <li>
+          {" "}
+          <Link
+            to="/contact"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            Contact
+          </Link>
+        </li>
         {isLoggedIn ? (
           <li onClick={handleLogout}>Log Out</li>
         ) : (

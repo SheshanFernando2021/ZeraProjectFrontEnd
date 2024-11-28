@@ -27,7 +27,7 @@ const Login = () => {
     try {
       // Send POST request to the backend API for login
       const response = await axios.post(
-        "http://localhost:5167/api/Auth/login", // Make sure this matches the backend route
+        "https://zera.azurewebsites.net/api/Auth/login", // Make sure this matches the backend route
         loginData
       );
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import men from "../../assets/men.png";
+import men from "../../assets/women2.png";
 import women from "../../assets/women.png";
 const Home = () => {
   return (

@@ -8,6 +8,7 @@
   position: fixed;
   box-shadow: 10px 1px 40px black;
   z-index: 9;
+  top: 0 !important;
 }
 .Logo {
   font-size: 3.5rem;

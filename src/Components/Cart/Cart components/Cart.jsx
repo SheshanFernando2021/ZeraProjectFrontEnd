@@ -19,7 +19,7 @@ const Cart = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:5167/api/cart/usercart",
+          "https://zera.azurewebsites.net/api/cart/usercart",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -55,20 +55,23 @@ const Cart = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5167/api/cartitem/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          cartItemId: id,
-          quantity,
-          price: cartItem.price,
-          cartId: cartItem.cartId,
-          productId: cartItem.product.productId,
-        }),
-      });
+      const response = await fetch(
+        `https://zera.azurewebsites.net/api/cartitem/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            cartItemId: id,
+            quantity,
+            price: cartItem.price,
+            cartId: cartItem.cartId,
+            productId: cartItem.product.productId,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Failed to update cart item: ${response.status}`);
@@ -88,12 +91,15 @@ const Cart = () => {
   const deleteCartItem = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://localhost:5167/api/cartitem/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://zera.azurewebsites.net/api/cartitem/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Failed to delete cart item: ${response.status}`);

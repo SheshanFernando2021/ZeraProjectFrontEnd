@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Order.css";
 
-const API_URL_CART = "http://localhost:5167/api/cart";
-const API_URL_ORDER = "http://localhost:5167/api/order";
+const API_URL_CART = "https://zera.azurewebsites.net/api/cart";
+const API_URL_ORDER = "https://zera.azurewebsites.net/api/order";
 
 const Order = () => {
   const [cartItems, setCartItems] = useState([]);

@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5167/api/cart";
-const API_URL2 = "http://localhost:5167/api/cartitem";
+const API_URL = "https://zera.azurewebsites.net/api/cart";
+const API_URL2 = "https://zera.azurewebsites.net/api/cartitem";
 
 export const GetAllCarts = () => {
   return <div>GetAllCarts</div>;

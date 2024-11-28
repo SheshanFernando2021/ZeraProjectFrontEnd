@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5167/api/product/all";
+const API_URL = "https://zera.azurewebsites.net/api/product/all";
 
 const getAllProducts = async () => {
   try {

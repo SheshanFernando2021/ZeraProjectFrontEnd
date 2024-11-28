@@ -2,13 +2,15 @@
   padding-top: 12vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center !important;
   background-color: #bbbbbb;
   min-height: 88vh;
 }
 
 .product-list {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   padding: 20px;

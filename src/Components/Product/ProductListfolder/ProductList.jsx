@@ -59,7 +59,7 @@ const ProductList = () => {
       console.log("User Token: ", token);
 
       const response = await axios.post(
-        "http://localhost:5167/api/CartItem/add",
+        "https://zera.azurewebsites.net/api/CartItem/add",
         { productId },
         {
           headers: {

@@ -1,0 +1,133 @@
+/* Contact.css */
+.containerContact {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url(../../assets/contact.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #ffffffaf;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 2rem;
+  padding-top: 12vh;
+}
+
+.contact-container h2 {
+  padding-top: 5vh;
+
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-size: 1rem;
+  color: #444;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #017aff;
+  outline: none;
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.success-message {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #e6f7e9;
+  border: 1px solid #a6d9b0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #2e7d32;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .contact-container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .contact-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .input-group label {
+    font-size: 0.9rem;
+  }
+
+  .input-group input,
+  .input-group textarea {
+    font-size: 1rem;
+    padding: 0.65rem;
+  }
+
+  .submit-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .success-message {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}
