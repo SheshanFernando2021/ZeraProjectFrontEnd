@@ -12,10 +12,9 @@ const Order = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [cartId, setCartId] = useState(""); // Store cart ID
-  const [cartUniqueId, setCartUniqueId] = useState(""); // Store the cart's unique ID (if available)
+  const [cartId, setCartId] = useState("");
+  const [cartUniqueId, setCartUniqueId] = useState("");
 
-  // Payment details state
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
     expiryDate: "",
@@ -49,9 +48,8 @@ const Order = () => {
         );
         setTotalAmount(total);
 
-        // Capture both the email (cartId) and the unique cart Id
-        setCartId(response.data.cartId); // Email (cartId)
-        setCartUniqueId(response.data.id); // Cart unique ID
+        setCartId(response.data.cartId);
+        setCartUniqueId(response.data.id);
 
         setLoading(false);
       } catch (err) {
@@ -90,27 +88,23 @@ const Order = () => {
     }
 
     try {
-      // Create an order (locally)
       const orderPayload = {
         OrderDate: new Date().toISOString(),
         ShippingDate: new Date().toISOString(),
-        ShippingAddress: "User Address Here", // Replace with a dynamic address if available
+        ShippingAddress: "User Address Here",
         TotalAmount: totalAmount,
         status: "Pending",
         PaymentMethod: paymentMethod,
       };
 
-      // Simulate successful order submission locally
       const orderId = Math.floor(Math.random() * 1000);
       console.log(`Order #${orderId} created locally.`);
 
-      // Clear cart
       if (!cartId || !cartUniqueId) {
         setError("Cart ID not found. Please try again.");
         return;
       }
 
-      // Send DELETE request to clear the cart
       const response = await axios.delete(`${API_URL_CART}/Delete`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -118,10 +112,8 @@ const Order = () => {
         data: { cartId: cartId, Id: cartUniqueId }, // Send both cartId (email) and Id (unique cart ID)
       });
 
-      // Log the response for debugging
       console.log("Cart deletion response:", response);
 
-      // Show success message
       setSuccessMessage(
         `Order #${orderId} successfully submitted. Cart cleared.`
       );
