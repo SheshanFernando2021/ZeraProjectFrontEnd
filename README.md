@@ -40,5 +40,5 @@ Zera is an eCommerce website for a clothing store, built with **.NET** for the b
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/zera-clothing-store.git
-cd zera-clothing-store
+git clone https://github.com/your-username/ZeraProjectFrontEnd.git
+cd ZeraProjectFrontEnd
