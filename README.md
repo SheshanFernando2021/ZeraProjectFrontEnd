@@ -2,6 +2,7 @@
 
 ![Netlify Status](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 Zera is an eCommerce website for a clothing store, built with **.NET** for the backend, **React** for the frontend, and deployed on **Azure**. The application allows users to browse a variety of clothing items, add them to their cart, and proceed to checkout. The project also integrates with APIs for managing inventory, user authentication, and payment processing.
 
