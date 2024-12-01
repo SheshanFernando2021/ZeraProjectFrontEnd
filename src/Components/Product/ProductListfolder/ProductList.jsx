@@ -82,11 +82,26 @@ const ProductList = () => {
   };
 
   if (loading) {
-    return <div>Loading products...</div>;
+    return (
+      <div className="loading-container">
+        <div className="loading-box">
+          <div className="loading-spinner"></div>
+          <h2>Please wait while we load the products for you...</h2>
+          <h3>It might take a moment. Thank you for your patience!</h3>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div className="loading-container">
+        <div className="loading-box">
+          <p>{error}</p>
+          <p>Please refresh the page and try again.</p>
+        </div>
+      </div>
+    );
   }
 
   return (

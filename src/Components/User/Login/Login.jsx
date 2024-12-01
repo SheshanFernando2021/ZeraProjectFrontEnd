@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   // State variables to store form data
-  const [userName, setUserName] = useState(""); // userName (email)
-  const [password, setPassword] = useState(""); // password
-  const [error, setError] = useState(""); // To store error messages
+  const [userName, setUserName] = useState("testuser@test.com"); // userName (email)
+  const [password, setPassword] = useState("1234567890"); // password
+  const [error, setError] = useState(""); // store error messages
   const [loading, setLoading] = useState(false); // Loading state for form submission
 
-  const navigate = useNavigate(); // useNavigate hook for redirection
+  const navigate = useNavigate();
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(""); // Clear previous error
+    setError("");
 
     // Create the login data object
     const loginData = {
@@ -27,12 +27,11 @@ const Login = () => {
     try {
       // Send POST request to the backend API for login
       const response = await axios.post(
-        "https://zera.azurewebsites.net/api/Auth/login", // Make sure this matches the backend route
+        "https://zera.azurewebsites.net/api/Auth/login",
         loginData
       );
 
       if (response.status === 200) {
-        // Assuming the response contains the token
         const { token } = response.data;
 
         // Store the JWT token in localStorage
@@ -40,17 +39,14 @@ const Login = () => {
 
         alert("Login successful!");
 
-        // Optionally set Authorization header for subsequent requests
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        // Redirect to the shop page after successful login
         navigate("/shop");
       }
     } catch (err) {
-      // Display error message on failure
       setError(err.response?.data?.message || "Invalid username or password");
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
@@ -59,11 +55,9 @@ const Login = () => {
       <div className="login">
         <h2>Login</h2>
 
-        {/* Show error message if any */}
         {error && <div className="error">{error}</div>}
 
         <form onSubmit={handleSubmit}>
-          {/* UserName (Email) input */}
           <div>
             <label>Email (Username):</label>
             <input
@@ -74,7 +68,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Password input */}
           <div>
             <label>Password:</label>
             <input
@@ -85,7 +78,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Submit button */}
           <div>
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}

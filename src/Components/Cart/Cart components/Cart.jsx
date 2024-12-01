@@ -12,7 +12,7 @@ const Cart = () => {
     const fetchCart = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        setError("No token found. Please log in.");
+        setError("User not found.");
         setLoading(false);
         return;
       }
@@ -29,7 +29,7 @@ const Cart = () => {
 
         if (!response.ok) {
           const errorText = await response.text();
-          throw new Error(`${response.status} ${errorText} Please Re-Login`);
+          throw new Error(`${errorText}`);
         }
 
         const data = await response.json();
@@ -44,15 +44,33 @@ const Cart = () => {
     fetchCart();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-box">
+          <div className="loading-spinner"></div>
+          <p>Loading your cart...</p>
+          <p>Thank you for your patience!</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="loading-container">
+        <div className="loading-box">
+          <p>{error}</p>
+          <h3>Please try logging in again.</h3>
+        </div>
+      </div>
+    );
+  }
+
   const updateCartItem = async (id, quantity) => {
     const token = localStorage.getItem("token");
-
-    // Find the cart item to retrieve productId
     const cartItem = cartItems.find((item) => item.cartItemId === id);
-    if (!cartItem) {
-      console.error("Cart item not found.");
-      return;
-    }
+    if (!cartItem) return;
 
     try {
       const response = await fetch(
@@ -73,11 +91,8 @@ const Cart = () => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error(`Failed to update cart item: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Failed to update cart item`);
 
-      // Update cart state locally after successful response
       setCartItems((prevItems) =>
         prevItems.map((item) =>
           item.cartItemId === id ? { ...item, quantity } : item
@@ -101,11 +116,8 @@ const Cart = () => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error(`Failed to delete cart item: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Failed to delete cart item`);
 
-      // Remove item from local state after successful response
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.cartItemId !== id)
       );
@@ -116,9 +128,6 @@ const Cart = () => {
 
   const calculateTotal = () =>
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="cart-container">
